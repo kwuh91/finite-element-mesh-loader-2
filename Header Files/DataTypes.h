@@ -24,7 +24,7 @@ public:
 	// constructor
 	Node(size_t size) : _coords(size), _dim(size) {}
 
-	size_t _id{};
+	size_t _id{}; // can't remove because of set<Node> with custom comparator based on id
 	std::vector<double> _coords;
 	size_t _dim{};
 	bool _is_vertex{};
