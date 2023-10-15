@@ -222,8 +222,7 @@ std::vector<Node> AneuMeshLoader::findBENodesByAreaID(size_t areaid) {
 
 // definition for method for adding new nodes to the centers of _FE and _SFE
 void AneuMeshLoader::newNodesInEdges() {
-	size_t newNodesAmount = _nodesAmount;
-	size_t NodeId = _nodesAmount + 1;
+	size_t NodeId = sizeNodes() + 1;
 	bool FE = true, BE = true;
 
 	for (FiniteElement el : _finiteElementsSet) {
