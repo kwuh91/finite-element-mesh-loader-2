@@ -32,7 +32,7 @@ public:
 
 // Node overloading == for hash struct
 bool operator == (Node const&, 
-				  Node const&);
+		  Node const&);
 
 // custom DataType for Finite Elements
 class FiniteElement {
@@ -53,11 +53,11 @@ public:
 
 // Finite Element overloading == for hash struct
 bool operator == (FiniteElement const&, 
-				  FiniteElement const&);
+		  FiniteElement const&);
 
 // Surface Finite Element overloading == for hash struct
 bool operator == (BoundaryElement const&,
-				  BoundaryElement const&);
+		  BoundaryElement const&);
 
 // unordered_set functor for hashing
 class Hash {
@@ -75,7 +75,7 @@ public:
 // set comparator for sorting
 struct Compare final {
 	bool operator()(const Node& lhs, 
-					const Node& rhs) const noexcept {
+			const Node& rhs) const noexcept {
 		return lhs._id < rhs._id; // comparison logic
 	}
 };
@@ -85,8 +85,8 @@ std::vector<std::string> splice(const std::string&);
 
 // function for finding all possible unique combinations size 2
 void combinationUtil(std::vector<std::vector<size_t>>&, 
-					 std::vector<size_t>&, 
-	                 std::vector<size_t>&, 
-	                 size_t, 
-					 size_t, 
-					 size_t);
+		     std::vector<size_t>&, 
+	             std::vector<size_t>&, 
+	             size_t, 
+		     size_t, 
+		     size_t);
