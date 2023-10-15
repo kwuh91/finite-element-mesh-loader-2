@@ -8,7 +8,7 @@
 void AneuMeshLoader::loadMesh(const std::string& path, bool neu) {
 
 	std::fstream filename(path, std::ios_base::in |
-		std::ios_base::binary);
+		                    std::ios_base::binary);
 
 	if (!filename.is_open())
 		throw Exception("Unable to open file at specified path: " + path);
@@ -122,8 +122,7 @@ std::vector<Node> AneuMeshLoader::getNodes() const {
 
 	std::ranges::transform(_nodesMap, std::back_inserter(res),
 		[](const auto& el) {
-			return el.second;
-		});
+			return el.second;});
 
 	std::ranges::sort(res, {}, &Node::_id);
 	return res;
@@ -150,8 +149,8 @@ std::vector<FiniteElement> AneuMeshLoader::findFiniteElementsByVertices(size_t n
 									size_t node2id, 
 									size_t node3id) {
 	if (!(_nodesMap.contains(node1id) && 
-		  _nodesMap.contains(node2id) && 
-		  _nodesMap.contains(node3id)))
+	      _nodesMap.contains(node2id) && 
+	      _nodesMap.contains(node3id)))
 		throw Exception("One or more nodes are not present in the loaded data");
 
 	Node& node1 = _nodesMap[node1id];
@@ -260,7 +259,7 @@ void AneuMeshLoader::newNodesInEdges() {
 		}
 
 		if (FE) { _amountOfNodesInOneFiniteElement = el._nodeIDvec.size();
-				  FE = false; }
+		          FE = false; }
 	}
 
 	for (BoundaryElement el : _boundaryElementsSet) {
@@ -291,7 +290,7 @@ void AneuMeshLoader::newNodesInEdges() {
 		}
 
 		if (BE) { _amountOfNodesInOneBoundaryElement = el._nodeIDvec.size();
-			       BE = false;
+			  BE = false;
 		}
 	}
 
