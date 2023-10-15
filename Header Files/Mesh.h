@@ -84,13 +84,13 @@ public:
 	std::vector<BoundaryElement> getBoundaryElements() const;
 
 	// getter for amount of Nodes in a derived class for the files with type *.aneu
-	size_t sizeNodes() const { return _nodesAmount; }
+	size_t sizeNodes() const { return _nodesMap.size(); }
 
 	// getter for amount of Finite Elements in a derived class for the files with type *.aneu
-	size_t sizeFiniteElements() const { return _finiteElementsAmount; }
+	size_t sizeFiniteElements() const { return _finiteElementsSet.size(); }
 
 	// getter for amount of Surface Finite Elements in a derived class for the files with type *.aneu
-	size_t sizeBoundaryElements() const { return _boundaryElementsAmount; }
+	size_t sizeBoundaryElements() const { return _boundaryElementsSet.size(); }
 
 	// getter for a Space Dimension in a derived class for the files with type *.aneu
 	size_t spaceDim() const { return _spaceDimension; }
@@ -122,11 +122,8 @@ public:
 	// method for neighbours
 	std::unordered_map<size_t, std::unordered_set<Node, Hash>> findNeighbours() const;
 private:
-	size_t _nodesAmount{}; 
 	size_t _spaceDimension{};
-	size_t _finiteElementsAmount{};
 	size_t _amountOfNodesInOneFiniteElement{}; 
-	size_t _boundaryElementsAmount{};
 	size_t _amountOfNodesInOneBoundaryElement{}; 
 	std::unordered_map<size_t, Node> _nodesMap; 
 	std::unordered_set<FiniteElement, Hash> _finiteElementsSet; 
