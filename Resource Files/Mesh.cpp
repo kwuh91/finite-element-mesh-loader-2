@@ -30,10 +30,10 @@ void AneuMeshLoader::loadMesh(const std::string& path, bool neu) {
 
 	// reading nodes
 	std::getline(filename, line);
-	_nodesAmount = std::stoull(splice(line)[0]);
+	size_t nodesAmount = std::stoull(splice(line)[0]);
 
 	size_t curr_id = 1;
-	for (size_t i = 0; i < _nodesAmount; ++i) {
+	for (size_t i = 0; i < nodesAmount; ++i) {
 		std::getline(filename, line);
 		if (i == 0) _spaceDimension = splice(line).size();
 		Node currNode(_spaceDimension);
@@ -55,16 +55,11 @@ void AneuMeshLoader::loadMesh(const std::string& path, bool neu) {
 		// reading FE/BE elements
 		std::getline(filename, line);
 
-		if constexpr (std::is_same_v<Element, FiniteElement>)
-			_finiteElementsAmount = std::stoull(splice(line)[0]);
-		else
-			_boundaryElementsAmount = std::stoull(splice(line)[0]);
-
 		size_t amount{};
 		if constexpr (std::is_same_v<Element, FiniteElement>)
-			amount = _finiteElementsAmount;
+			amount = std::stoull(splice(line)[0]);
 		else
-			amount = _boundaryElementsAmount;
+			amount = std::stoull(splice(line)[0]);
 
 		for (size_t i = 0; i < amount; ++i) {
 			std::getline(filename, line);
@@ -293,8 +288,6 @@ void AneuMeshLoader::newNodesInEdges() {
 			  BE = false;
 		}
 	}
-
-	_nodesAmount = NodeId - 1;
 }
 
 // method for neighbours
