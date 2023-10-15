@@ -147,8 +147,8 @@ std::vector<BoundaryElement> AneuMeshLoader::getBoundaryElements() const {
 
 // definition for method for finding Finite Elements by 3 vertex Node ids
 std::vector<FiniteElement> AneuMeshLoader::findFiniteElementsByVertices(size_t node1id, 
-																		size_t node2id, 
-																		size_t node3id) {
+									size_t node2id, 
+									size_t node3id) {
 	if (!(_nodesMap.contains(node1id) && 
 		  _nodesMap.contains(node2id) && 
 		  _nodesMap.contains(node3id)))
@@ -177,7 +177,7 @@ std::vector<FiniteElement> AneuMeshLoader::findFiniteElementsByVertices(size_t n
 
 // definition for method for finding Finite Elements by 2 Node ids
 std::vector<FiniteElement> AneuMeshLoader::findFiniteElementsByEdges(size_t node1id, 
-																	 size_t node2id) {
+								     size_t node2id) {
 	if (!(_nodesMap.contains(node1id) && 
 		  _nodesMap.contains(node2id))) 
 		throw Exception("One or more nodes are not present in the loaded data");
@@ -324,18 +324,18 @@ std::unordered_map<size_t, std::unordered_set<Node, Hash>> AneuMeshLoader::findN
 // 
 // definition for NeuToAneu method (turn *.neu file to *.aneu)
 std::fstream AneuMeshLoader::NeuToAneu(std::fstream&       filename, 
-									   const std::string&  aneuFileName) {
+				       const std::string&  aneuFileName) {
 
 	std::fstream newfile(aneuFileName, std::ios_base::out  | 
-								       std::ios_base::in   |
-									   std::fstream::trunc |
-									   std::ios_base::binary);
+					   std::ios_base::in   |
+				           std::fstream::trunc |
+					   std::ios_base::binary);
 
 	if (!newfile.is_open()) 
 		throw Exception("Unable to create file");
 
 	auto NeuToAneuUtil = [](std::fstream& neu, 
-							std::fstream& aneu, bool flag) {
+				std::fstream& aneu, bool flag) {
 		std::string line;
 		size_t data, count;
 
